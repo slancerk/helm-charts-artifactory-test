@@ -1,0 +1,4 @@
+repositoryID: tooljet-test-helm-repo
+owners: # (optional, used to claim repository ownership)
+  - name: souvik
+    email: souvik@tooljet.com
