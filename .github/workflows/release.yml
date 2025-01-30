@@ -2,7 +2,7 @@ name: Release Charts
 
 on:
   push:
-    branches: [setup-chart-release]
+    branches: [published] #[setup-chart-release]
 
 jobs:
   release:
@@ -33,16 +33,14 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
 
-      - name: Push Helm Chart to Artifactory
+ 
+      - name: Package Helm Chart
         run: |
-          helm registry login ${{ secrets.ARTIFACTORY_URL }} --username "apikey" --password "${{ secrets.ARTIFACTORY_API_KEY }}"
-          helm push tooljet-*.tgz oci://${{ secrets.ARTIFACTORY_URL }}/${{ secrets.ARTIFACTORY_REPO }}
+          helm package charts/tooljet --destination charts/
 
-      - name: Update Helm Index for GitHub Pages
+      - name: Update index.yaml
         run: |
-          helm repo index --url https://slancerk.github.io/helm-charts-artifactory-test/charts/tooljet/ --merge charts/tooljet/index.yaml charts/tooljet/
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add charts/tooljet/index.yaml
-          git commit -m "Update Helm index.yaml for new release"
+          helm repo index charts/ --url https://slancerk.github.io/helm-charts-artifactory-test/charts/
+          git add charts/index.yaml
+          git commit -m "Update Helm repo index"
           git push origin main
