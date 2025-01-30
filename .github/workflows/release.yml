@@ -31,3 +31,18 @@ jobs:
         uses: helm/chart-releaser-action@v1.1.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+
+      - name: Push Helm Chart to Artifactory
+        run: |
+          helm registry login ${{ secrets.ARTIFACTORY_URL }} --username "apikey" --password "${{ secrets.ARTIFACTORY_API_KEY }}"
+          helm push tooljet-*.tgz oci://${{ secrets.ARTIFACTORY_URL }}/${{ secrets.ARTIFACTORY_REPO }}
+
+      - name: Update Helm Index for GitHub Pages
+        run: |
+          helm repo index --url https://slancerk.github.io/helm-charts-artifactory-test/charts/tooljet/ --merge charts/tooljet/index.yaml charts/tooljet/
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add charts/tooljet/index.yaml
+          git commit -m "Update Helm index.yaml for new release"
+          git push origin main
