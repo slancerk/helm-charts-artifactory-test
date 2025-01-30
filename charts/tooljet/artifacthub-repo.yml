@@ -1,4 +1,4 @@
-repositoryID: tooljet-test-helm-repo
+repositoryID: 7dd9ae57-9f7d-4357-bd56-71f043f59925
 owners: # (optional, used to claim repository ownership)
   - name: souvik
     email: souvik@tooljet.com
