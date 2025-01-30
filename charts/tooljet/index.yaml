@@ -5,7 +5,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 14.4.0
-    created: "2025-01-30T15:17:47.354727+05:30"
+    created: "2025-01-30T18:07:37.174115+05:30"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -33,14 +33,14 @@ entries:
     - https://github.com/bitnami/bitnami-docker-postgresql
     - https://www.postgresql.org/
     urls:
-    - https://your-artifactory-domain/artifactory/helm-charts/charts/postgresql-11.6.19.tgz
+    - https://slancerk.github.io/helm-charts-artifactory-test/charts/tooljet/charts/postgresql-11.6.19.tgz
     version: 11.6.19
   redis:
   - annotations:
       category: Database
     apiVersion: v2
     appVersion: 6.2.7
-    created: "2025-01-30T15:17:47.357639+05:30"
+    created: "2025-01-30T18:07:37.177057+05:30"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -66,11 +66,11 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-redis
     urls:
-    - https://your-artifactory-domain/artifactory/helm-charts/charts/redis-16.13.2.tgz
+    - https://slancerk.github.io/helm-charts-artifactory-test/charts/tooljet/charts/redis-16.13.2.tgz
     version: 16.13.2
   tooljet:
   - apiVersion: v2
-    created: "2025-01-30T15:17:47.351709+05:30"
+    created: "2025-01-30T18:07:37.171694+05:30"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -95,6 +95,6 @@ entries:
     - https://github.com/ToolJet/ToolJet
     type: application
     urls:
-    - https://your-artifactory-domain/artifactory/helm-charts/tooljet-3.0.6.tgz
+    - https://slancerk.github.io/helm-charts-artifactory-test/charts/tooljet/tooljet-3.0.6.tgz
     version: 3.0.6
-generated: "2025-01-30T15:17:47.34558+05:30"
+generated: "2025-01-30T18:07:37.163798+05:30"
